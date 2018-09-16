@@ -23,13 +23,13 @@ public class TabuaMember {
 
     private String email;
 
-    private Date expiryDate;
+    private String expiryDate;
 
-    private Date applyDate;
+    private String applyDate;
 
-    private Integer statusCredit;
+    private String statusCredit;
 
-    private Integer upgradeCredit;
+    private String upgradeCredit;
 
     @Column(nullable = false)
     private Integer isValid;
@@ -74,35 +74,35 @@ public class TabuaMember {
         this.email = email;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 
-    public Date getApplyDate() {
+    public String getApplyDate() {
         return applyDate;
     }
 
-    public void setApplyDate(Date applyDate) {
+    public void setApplyDate(String applyDate) {
         this.applyDate = applyDate;
     }
 
-    public Integer getStatusCredit() {
+    public String getStatusCredit() {
         return statusCredit;
     }
 
-    public void setStatusCredit(Integer statusCredit) {
+    public void setStatusCredit(String statusCredit) {
         this.statusCredit = statusCredit;
     }
 
-    public Integer getUpgradeCredit() {
+    public String getUpgradeCredit() {
         return upgradeCredit;
     }
 
-    public void setUpgradeCredit(Integer upgradeCredit) {
+    public void setUpgradeCredit(String upgradeCredit) {
         this.upgradeCredit = upgradeCredit;
     }
 

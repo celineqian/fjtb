@@ -24,7 +24,7 @@
     <appender name="APP" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名 -->
-            <FileNamePattern>${LOG_APP_HOME}/crawler.%d{yyyy-MM-dd}.log
+            <FileNamePattern>${LOG_APP_HOME}/fjtb.%d{yyyy-MM-dd}.log
             </FileNamePattern>
             <!--日志文件保留天数 -->
             <MaxHistory>${LOG_MAX_HISTORY}</MaxHistory>
@@ -46,6 +46,9 @@
     </logger>
     <logger name="com.zaxxer">
         <level value="WARN" />
+    </logger>
+    <logger name="org.apache.http">
+        <level value="WARN"/>
     </logger>
     <root level="DEBUG">
         <appender-ref ref="APP" />
