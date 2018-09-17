@@ -20,7 +20,7 @@ public class TabuaMemberScheduler {
     @Autowired
     private TabuaMemberProcessor processor;
 
-    @Scheduled(cron ="0 38 22 * * ?")
+    @Scheduled(cron ="0 19 23 * * ?")
     public void TMShuScheduled(){
         System.out.println("---- 开始执行定时任务 -----");
         processor.login();

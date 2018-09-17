@@ -25,9 +25,6 @@ import us.codecraft.webmagic.processor.PageProcessor;
 @Component
 public class TabuaMemberProcessor implements PageProcessor {
 
-    @Autowired
-    protected TabuaMemberRepository repository;
-
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100)
             .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36");
     private static WebDriver driver;
@@ -44,7 +41,7 @@ public class TabuaMemberProcessor implements PageProcessor {
         String ucb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblUpgradeCreditBalanceValue']/b/text()").toString();
         String expireDate = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblExpiryDateValue']/b/text()").toString();
         String lastActivity = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
-        page.putField("cardNumber","CWVLWD");
+        page.putField("cardNumber","DCRHBQ");
         if (name != null)
             page.putField("Name", name);
         if (scb != null)
@@ -76,25 +73,17 @@ public class TabuaMemberProcessor implements PageProcessor {
         if(e != null){
             e.click();
             //填写登陆信息
-
-//            List<TabuaMember> members = repository.findAll();
-//            for (TabuaMember tm : members){
-//                String keyCard = tm.getCardNumber();
-//                String keyPwd = tm.getPassword();
-                driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("CWVLWD");
-                driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("cymtb123");
-                e = driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_ibtnLogin']"));
+            driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("DCRHBQ");
+            driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("djstb123");
+            e = driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_ibtnLogin']"));
+            e.click();
+            //页面切换
+            driver.navigate().refresh();
+            e = driver.findElement(By.xpath("//*[@id='main']/table[2]/tbody/tr[4]/td[1]/a"));
+            if(e != null)
                 e.click();
-
-                //页面切换
-                driver.navigate().refresh();
-
-                e = driver.findElement(By.xpath("//*[@id='main']/table[2]/tbody/tr[4]/td[1]/a"));
-                if(e != null)
-                    e.click();
-                cookies = driver.manage().getCookies();
-            }
-//        }
+            cookies = driver.manage().getCookies();
+        }
     }
 
     @Override
@@ -104,6 +93,5 @@ public class TabuaMemberProcessor implements PageProcessor {
         }
         return site;
     }
-
 
 }
