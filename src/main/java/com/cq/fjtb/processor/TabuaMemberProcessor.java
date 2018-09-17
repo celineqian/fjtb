@@ -1,6 +1,9 @@
 package com.cq.fjtb.processor;
 
+import java.util.List;
 import java.util.Set;
+
+import com.cq.fjtb.entity.TabuaMember;
 import com.cq.fjtb.pipeline.TabuaMemberPipeline;
 import com.cq.fjtb.repository.TabuaMemberRepository;
 import org.openqa.selenium.By;
@@ -9,7 +12,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -19,16 +26,16 @@ import us.codecraft.webmagic.processor.PageProcessor;
 public class TabuaMemberProcessor implements PageProcessor {
 
     @Autowired
-    private TabuaMemberRepository tabuaMemberRepository;
+    protected TabuaMemberRepository repository;
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100)
             .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36");
     private static WebDriver driver;
     private Set<Cookie> cookies;
 
-
     @Override
     public void process(Page page) {
+
         page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/membership-activity").all());
         page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/your-membership").all());
 
@@ -37,6 +44,7 @@ public class TabuaMemberProcessor implements PageProcessor {
         String ucb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblUpgradeCreditBalanceValue']/b/text()").toString();
         String expireDate = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblExpiryDateValue']/b/text()").toString();
         String lastActivity = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
+        page.putField("cardNumber","CWVLWD");
         if (name != null)
             page.putField("Name", name);
         if (scb != null)
@@ -68,21 +76,25 @@ public class TabuaMemberProcessor implements PageProcessor {
         if(e != null){
             e.click();
             //填写登陆信息
-//            List<TabuaMember> members = tabuaMemberRepository.findAll();
+
+//            List<TabuaMember> members = repository.findAll();
 //            for (TabuaMember tm : members){
 //                String keyCard = tm.getCardNumber();
 //                String keyPwd = tm.getPassword();
-                driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("VK48KW");
-                driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("kfjytb123");
+                driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("CWVLWD");
+                driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("cymtb123");
                 e = driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_ibtnLogin']"));
                 e.click();
+
                 //页面切换
+                driver.navigate().refresh();
+
                 e = driver.findElement(By.xpath("//*[@id='main']/table[2]/tbody/tr[4]/td[1]/a"));
                 if(e != null)
                     e.click();
                 cookies = driver.manage().getCookies();
-//            }
-        }
+            }
+//        }
     }
 
     @Override
@@ -93,13 +105,5 @@ public class TabuaMemberProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String args[]){
-        TabuaMemberProcessor tmp = new TabuaMemberProcessor();
-        tmp.login();
-        Spider spider = Spider.create(tmp)
-                .addPipeline(new TabuaMemberPipeline())
-                .addUrl("https://www.fijiairways.com/tabua-club/member-login/");
-        spider.start();
-        driver.close();
-    }
+
 }

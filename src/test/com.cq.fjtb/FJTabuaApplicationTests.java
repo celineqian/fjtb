@@ -17,14 +17,32 @@ import java.util.List;
 public class FJTabuaApplicationTests {
 
     @Autowired
-    private TabuaMemberRepository tabuaMemberRepository;
+    private TabuaMemberRepository repository;
 
     public void getTabuaMemberByCarNumber()throws Exception{
         String cardNumber = "0NR44K";
-        TabuaMember tm = tabuaMemberRepository.findByCardNumber(cardNumber);
+        TabuaMember tm = repository.findByCardNumber(cardNumber);
         System.out.println("name is: " + tm.getName());
     }
 
+
+//    @Test
+    public void updateTabuaMember()throws Exception{
+        TabuaMember tm = repository.findByName("ZI YI ZHENG");
+        tm.setStatusCredit("100");
+        repository.saveAndFlush(tm);
+        System.out.println("status credit:  "+tm.getStatusCredit());
+    }
+
+    @Test
+    public void findAll()throws Exception{
+        List<TabuaMember> members = repository.findAll();
+        for(TabuaMember tm : members)
+            System.out.println("Name = " + tm.getName());
+    }
+//
+//
+//
 //    public void updatePassword() throws Exception{
 //        String cardNumber = "0NR44K";
 //        TabuaMember tm = tabuaMemberRepository.findByCardNumber("0NR44K");
