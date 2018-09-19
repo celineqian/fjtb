@@ -53,20 +53,30 @@ public class TabuaMemberProcessor implements PageProcessor {
         String expireDate = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblExpiryDateValue']/b/text()").toString();
         String lastActivity = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
         page.putField("cardNumber", getCardNumber());
-        if (name != null)
+        if (name != null){
             page.putField("Name", name);
-        if (scb != null)
+            System.out.println("name:" + name);
+        }
+        if (scb != null) {
             page.putField("Status Credit Balance", scb);
+            System.out.println("Status Credit Balance:" + scb);
 
-        if (ucb != null)
+        }
+
+        if (ucb != null){
             page.putField("Upgrade Credit Balance", ucb);
+            System.out.println("Upgrade Credit Balance" + ucb);
+        }
 
-        if (expireDate != null)
+        if (expireDate != null){
             page.putField("Expiry Date", expireDate);
+            System.out.println("Expiry date:" + expireDate);
+        }
 
-        if (lastActivity != null)
+        if (lastActivity != null){
             page.putField("Last activity", lastActivity);
-
+            System.out.println("last activity:" + lastActivity);
+        }
     }
 
     public void login(){
