@@ -1,11 +1,17 @@
 package com.cq.fjtb.scheduler;
 
+import com.cq.fjtb.entity.TabuaMember;
 import com.cq.fjtb.pipeline.TabuaMemberPipeline;
 import com.cq.fjtb.processor.TabuaMemberProcessor;
+import com.cq.fjtb.repository.TabuaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import sun.security.provider.ConfigFile;
 import us.codecraft.webmagic.Spider;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author: Celine Q
@@ -20,16 +26,27 @@ public class TabuaMemberScheduler {
     @Autowired
     private TabuaMemberProcessor processor;
 
-    @Scheduled(cron ="0 19 23 * * ?")
+    @Autowired
+    private TabuaMemberRepository repository;
+
+
+    @Scheduled(cron ="0 25 21 * * ?")
     public void TMShuScheduled(){
         System.out.println("---- 开始执行定时任务 -----");
-        processor.login();
-        Spider spider = Spider.create(processor)
-                .addPipeline(pipeline)
-                .addUrl("https://www.fijiairways.com/tabua-club/member-login/");
-        spider.start();
-        spider.setExitWhenComplete(true);
-        spider.close();
+        List<TabuaMember> members = repository.findAll();
+        for (TabuaMember tm: members) {
+            if(tm.getId()<=3){
+                processor.setCardNumber(tm.getCardNumber());
+                processor.setPassword(tm.getPassword());
+                processor.login();
+                Spider spider = Spider.create(processor).addPipeline(pipeline)
+                        .addUrl("https://www.fijiairways.com/tabua-club/member-login/").thread(5);
+                spider.start();
+            }
+
+        }
+//        spider.setExitWhenComplete(true);
+//        spider.close();
     }
 }
 

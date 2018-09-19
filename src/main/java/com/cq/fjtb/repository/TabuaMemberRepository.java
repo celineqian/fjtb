@@ -11,6 +11,6 @@ public interface TabuaMemberRepository extends JpaRepository<TabuaMember, Long> 
     TabuaMember findByCardNumber(String cardNumber);
 
 
-    TabuaMember findByName(String name);
+//    TabuaMember findByName(String name);
 
 }

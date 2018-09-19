@@ -1,25 +1,14 @@
 package com.cq.fjtb.processor;
 
-import java.util.List;
 import java.util.Set;
-
-import com.cq.fjtb.entity.TabuaMember;
-import com.cq.fjtb.pipeline.TabuaMemberPipeline;
-import com.cq.fjtb.repository.TabuaMemberRepository;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 @Component
@@ -27,8 +16,30 @@ public class TabuaMemberProcessor implements PageProcessor {
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100)
             .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36");
+
     private static WebDriver driver;
+
     private Set<Cookie> cookies;
+
+    private String cardNumber;
+
+    private String password;
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public void process(Page page) {
@@ -41,7 +52,7 @@ public class TabuaMemberProcessor implements PageProcessor {
         String ucb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblUpgradeCreditBalanceValue']/b/text()").toString();
         String expireDate = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblExpiryDateValue']/b/text()").toString();
         String lastActivity = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
-        page.putField("cardNumber","DCRHBQ");
+        page.putField("cardNumber", getCardNumber());
         if (name != null)
             page.putField("Name", name);
         if (scb != null)
@@ -73,8 +84,8 @@ public class TabuaMemberProcessor implements PageProcessor {
         if(e != null){
             e.click();
             //填写登陆信息
-            driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("DCRHBQ");
-            driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("djstb123");
+            driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys(getCardNumber());
+            driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys(getPassword());
             e = driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_ibtnLogin']"));
             e.click();
             //页面切换
@@ -83,6 +94,7 @@ public class TabuaMemberProcessor implements PageProcessor {
             if(e != null)
                 e.click();
             cookies = driver.manage().getCookies();
+            driver.close();
         }
     }
 

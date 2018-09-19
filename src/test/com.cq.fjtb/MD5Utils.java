@@ -1,4 +1,4 @@
-package com.cq.fjtb.util;
+package com.cq.fjtb;
 
 import org.springframework.util.StringUtils;
 import java.math.BigInteger;

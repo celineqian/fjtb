@@ -2,14 +2,12 @@ package com.cq.fjtb;
 
 import com.cq.fjtb.entity.TabuaMember;
 import com.cq.fjtb.repository.TabuaMemberRepository;
-import com.cq.fjtb.util.MD5Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.lang.reflect.Executable;
 import java.util.List;
 
 @SpringBootTest
@@ -27,12 +25,12 @@ public class FJTabuaApplicationTests {
 
 
 //    @Test
-    public void updateTabuaMember()throws Exception{
-        TabuaMember tm = repository.findByName("ZI YI ZHENG");
-        tm.setStatusCredit("100");
-        repository.saveAndFlush(tm);
-        System.out.println("status credit:  "+tm.getStatusCredit());
-    }
+//    public void updateTabuaMember()throws Exception{
+//        TabuaMember tm = repository.findByName("ZI YI ZHENG");
+//        tm.setStatusCredit("100");
+//        repository.saveAndFlush(tm);
+//        System.out.println("status credit:  "+tm.getStatusCredit());
+//    }
 
     @Test
     public void findAll()throws Exception{
