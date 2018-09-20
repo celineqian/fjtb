@@ -24,14 +24,6 @@ public class FJTabuaApplicationTests {
     }
 
 
-//    @Test
-//    public void updateTabuaMember()throws Exception{
-//        TabuaMember tm = repository.findByName("ZI YI ZHENG");
-//        tm.setStatusCredit("100");
-//        repository.saveAndFlush(tm);
-//        System.out.println("status credit:  "+tm.getStatusCredit());
-//    }
-
     @Test
     public void findAll()throws Exception{
         List<TabuaMember> members = repository.findAll();
