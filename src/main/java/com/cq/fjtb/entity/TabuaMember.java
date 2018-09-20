@@ -31,6 +31,16 @@ public class TabuaMember {
 
     private String upgradeCredit;
 
+    private String lastUpdteDate;
+
+    public String getLastUpdteDate() {
+        return lastUpdteDate;
+    }
+
+    public void setLastUpdteDate(String lastUpdteDate) {
+        this.lastUpdteDate = lastUpdteDate;
+    }
+
     @Column(nullable = false)
     private Integer isValid;
 

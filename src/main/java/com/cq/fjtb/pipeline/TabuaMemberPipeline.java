@@ -2,11 +2,14 @@ package com.cq.fjtb.pipeline;
 
 import com.cq.fjtb.entity.TabuaMember;
 import com.cq.fjtb.repository.TabuaMemberRepository;
+import com.cq.fjtb.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
+
+import java.util.Date;
 import java.util.Map;
 
 
@@ -48,13 +51,14 @@ public class TabuaMemberPipeline implements Pipeline {
             if(entry.getKey().contains("Expiry Date")){
                 expiryDate = (String)entry.getValue();
                 tm.setExpiryDate(expiryDate);
-                if(com.cq.fjtb.util.DateUtil.isExpired(expiryDate))
+                if(DateUtil.isExpired(tm.getExpiryDate()))
                     tm.setIsValid(0);
             }
         }
-        if(name!="" && scb!="" && ucb!="" && expiryDate!="")
-            System.out.println("======================= 进来存一次  ==================");
+        if(name!="" && scb!="" && ucb!="" && expiryDate!=""){
+            tm.setLastUpdteDate(DateUtil.DateToStr(new Date()));
             repository.save(tm);
+        }
     }
 }
 

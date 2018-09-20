@@ -22,8 +22,8 @@ public class RSAUtil {
     //指定key的大小
     private static int KEYSIZE = 1024;
     //指定公钥存放文件和私钥存放文件
-    private static String PUBLIC_KEY_FILE = "applog/public.key";
-    private static String PRIVATE_KEY_FILE = "applog/private.key";
+    public static String PUBLIC_KEY_FILE = "src/public.key";
+    public static String PRIVATE_KEY_FILE = "src/private.key";
 
     //生成公钥和私钥并分别存放在文件中
     private static void generateKeyPair() throws Exception{
@@ -77,7 +77,7 @@ public class RSAUtil {
 
     //调用方法举例
     public static void main(String[] args) {
-        String source = "11111111";
+        String source = "Celine";
         System.out.println("明文字符串：[" + source + "]");
         try{
             //生成可用的密钥对并分别保存在文件中

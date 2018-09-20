@@ -19,11 +19,5 @@ public class TabuaMemberController {
         return "index";
     }
 
-    @RequestMapping(value = "/{cardNumber}", method = RequestMethod.GET)
-    public String show(@PathVariable String cardNumber, ModelMap map){
-        TabuaMember tm = repository.findByCardNumber(cardNumber);
-        map.put("tm",tm);
-        return "index";
-    }
 
 }

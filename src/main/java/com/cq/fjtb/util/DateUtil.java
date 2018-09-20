@@ -11,6 +11,11 @@ import java.util.Date;
 public class DateUtil {
 
 
+    /**
+     * 日期和当前时间比是否过期
+     * @param expireDate
+     * @return true: 已过期; false 未过期
+     */
     public static boolean isExpired(String expireDate) {
         if (expireDate != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
@@ -25,6 +30,17 @@ public class DateUtil {
                 return true;
         }
         return false;
+    }
+
+    /**
+     * 日期转换成字符串
+     * @param date
+     * @return str
+     */
+    public static String DateToStr(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = format.format(date);
+        return str;
     }
 }
 

@@ -2,12 +2,14 @@ package com.cq.fjtb;
 
 import com.cq.fjtb.entity.TabuaMember;
 import com.cq.fjtb.repository.TabuaMemberRepository;
+import com.cq.fjtb.util.RSAUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -27,8 +29,15 @@ public class FJTabuaApplicationTests {
     @Test
     public void findAll()throws Exception{
         List<TabuaMember> members = repository.findAll();
-        for(TabuaMember tm : members)
-            System.out.println("Name = " + tm.getName());
+        List<TabuaMember> m = new ArrayList<TabuaMember>();
+        for(TabuaMember tm : members){
+            System.out.println("原密码是：" + tm.getPassword());
+            String cryptograph = RSAUtil.encrypt(tm.getPassword(), RSAUtil.PUBLIC_KEY_FILE);//生成的密文
+            tm.setPassword(cryptograph);
+            System.out.println("原密码是：" + tm.getPassword());
+            m.add(tm);
+        }
+        repository.saveAll(m);
     }
 //
 //
