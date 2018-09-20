@@ -91,7 +91,7 @@ public class TabuaMemberProcessor implements PageProcessor {
         driver.get("https://www.fijiairways.com/tabua-club/member-login");
         //确认访问地点
         WebElement e = driver.findElement(By.xpath("//div[@class='terms-of-use-accept-button Button Color_5d4b3f']"));
-        if(e != null){
+        if(e != null) {
             e.click();
             //填写登陆信息
             driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys(getCardNumber());
@@ -101,7 +101,7 @@ public class TabuaMemberProcessor implements PageProcessor {
             //页面切换
             driver.navigate().refresh();
             e = driver.findElement(By.xpath("//*[@id='main']/table[2]/tbody/tr[4]/td[1]/a"));
-            if(e != null)
+            if (e != null)
                 e.click();
             cookies = driver.manage().getCookies();
             driver.close();

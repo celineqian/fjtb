@@ -28,12 +28,12 @@ public class TabuaMemberScheduler {
     private TabuaMemberRepository repository;
 
 
-    @Scheduled(cron ="0 45 23 * * ?")
+    @Scheduled(cron ="0 14 14 * * ?")
     public void TMShuScheduled(){
         System.out.println("---- 开始执行定时任务 -----");
         List<TabuaMember> members = repository.findAll();
         for (TabuaMember tm: members) {
-            if(tm.getId()>15 && tm.getId()<20){
+            if(tm.getId()>16){
                 processor.setCardNumber(tm.getCardNumber());
                 processor.setPassword(tm.getPassword());
                 processor.login();
