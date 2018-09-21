@@ -46,9 +46,6 @@ public class TabuaMemberScheduler {
             Spider spider = Spider.create(processor).addPipeline(pipeline)
                     .addUrl("https://www.fijiairways.com/tabua-club/member-login/").thread(5);
             spider.run();
-//          spider.setExitWhenComplete(true);
-//          spider.close();
-
         }
     }
 }

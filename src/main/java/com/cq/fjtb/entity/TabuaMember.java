@@ -3,6 +3,10 @@ package com.cq.fjtb.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * @author: Celine Q
+ * @create: 2018-09-16 14:54
+ **/
 @Entity
 @Table(name="t_tabuamember")
 public class TabuaMember {

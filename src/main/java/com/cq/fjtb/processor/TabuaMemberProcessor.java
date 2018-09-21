@@ -11,6 +11,10 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
+/**
+ * @author: Celine Q
+ * @create: 2018-09-16 14:54
+ **/
 @Component
 public class TabuaMemberProcessor implements PageProcessor {
 

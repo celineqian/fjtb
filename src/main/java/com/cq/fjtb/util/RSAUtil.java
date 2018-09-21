@@ -22,8 +22,8 @@ public class RSAUtil {
     //指定key的大小
     private static int KEYSIZE = 1024;
     //指定公钥存放文件和私钥存放文件
-    public static String PUBLIC_KEY_FILE = "src/public.key";
-    public static String PRIVATE_KEY_FILE = "src/private.key";
+    public static String PUBLIC_KEY_FILE = "applog/public.key";
+    public static String PRIVATE_KEY_FILE = "applog/private.key";
 
     //生成公钥和私钥并分别存放在文件中
     private static void generateKeyPair() throws Exception{

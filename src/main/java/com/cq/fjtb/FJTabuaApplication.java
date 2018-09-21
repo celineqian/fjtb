@@ -7,6 +7,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ * @author: Celine Q
+ * @create: 2018-09-16 14:54
+ **/
 @SpringBootApplication
 @EnableScheduling
 public class FJTabuaApplication extends SpringBootServletInitializer {
