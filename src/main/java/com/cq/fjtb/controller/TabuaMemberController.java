@@ -7,10 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author: Celine Q
@@ -19,12 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class TabuaMemberController {
 
+    @Autowired
     private TabuaMemberRepository repository;
 
-
-    public String findOne(Model model, @PathVariable("cardNumber") String cardNumber){
-        model.addAttribute("member", repository.findByCardNumber(cardNumber));
+    @GetMapping("/search")
+    public String search(@RequestParam(value="cardNumber", required=true) String cardNumber, Model model){
+        TabuaMember member = repository.findByCardNumber(cardNumber);
+        model.addAttribute("member",member);
+        System.out.println(member.getName());
         return "member";
     }
+
 
 }

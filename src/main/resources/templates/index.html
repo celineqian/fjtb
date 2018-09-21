@@ -17,10 +17,10 @@
         -->
     </div>
     <div class="input-group mb-3">
-		<form role="form" method="post" class="form-horizontal" action="/findOne">
-        <input id="cardNumber" name="cardNumber"  type="text"  class="form-control" placeholder="Tabua Card Number">
-        <button class="btn btn-outline-secondary" type="button" onclick="find();">提交</button>
-		</form>
+        <form action="/search" method="get">
+            <input id="cardNumber" name="cardNumber"  type="text"  class="form-control" placeholder="Tabua Card Number" >
+            <button class="btn btn-outline-secondary" type="submit">提交</button>
+        </form>
     </div>
 
 
@@ -31,25 +31,6 @@
 <script src="../static/js/bootstrap.min.js"></script>
 <script src="../static/js/popper.min.js"></script>
 <script src="../static/js/jquery-3.3.1.slim.min.js"></script>
-<script type="text/javascript">
-    function find() {
-        alert("方法先进来.....");
-        var cardNumber = $('#cardNumber').val();
-        alert(cardNumber);
-        $.ajax({
-            type: 'post',
-            url: "/finOne",
-            dataType: 'json',
-            error: "重新请求",
-            data: {
-                'cardNumber': cardNumber
-            },
-            Success: function () {
-            },
-            Error: function () {
-            }
-        });
-    }
-</script>
+
 </body>
 </html>
