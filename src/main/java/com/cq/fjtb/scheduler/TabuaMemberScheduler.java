@@ -29,18 +29,22 @@ public class TabuaMemberScheduler {
     private TabuaMemberRepository repository;
 
 
-    @Scheduled(cron ="0 25 20 * * ?")
+    @Scheduled(cron ="0 4 11 * * ?")
     public void TMShuScheduled(){
         System.out.println("----- 开始执行定时任务 -----");
-        List<TabuaMember> members = repository.findAll();
+        List<TabuaMember> members = repository.findValidAll();
         for (TabuaMember tm: members) {
             try{
-                String text = RSAUtil.decrypt(tm.getPassword(), RSAUtil.PRIVATE_KEY_FILE);
+                if(tm.getPassword().length()>100){
+                    String text = RSAUtil.decrypt(tm.getPassword(), RSAUtil.PRIVATE_KEY_FILE);
+                    processor.setPassword(text);
+                }else {
+                    processor.setPassword(tm.getPassword());
+                }
                 processor.setCardNumber(tm.getCardNumber());
-                processor.setPassword(text);
                 processor.login();
             } catch (Exception e){
-                System.out.println("加解密过程中发生错误：" + e.getMessage());
+                System.out.println("解密过程中发生错误：" + e.getMessage());
                 return;
             }
             Spider spider = Spider.create(processor).addPipeline(pipeline)

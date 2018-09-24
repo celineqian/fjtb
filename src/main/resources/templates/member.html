@@ -11,15 +11,22 @@
 <main role="main" class="container">
 
     <div class="starter-template">
-        <h2>用户详情</h2>
+        <h2>会员详情 Member Detail</h2>
         <div>
+            <#if member??>
             <ul>
-                <li>名字Name：${member.name}</li>
-                <li>卡号Card Number：${member.cardNumber}</li>
-                <li>过期Expiry Date：${member.expiryDate}</li>
-                <li>积分Status Credit：${member.statusCredit}</li>
-                <li>升级积分Upgrade Credit：${member.upgradeCredit}</li>
+                <li>名字 Name：${member.name}</li>
+                <li>卡号 Card Number：${member.cardNumber}</li>
+                <li>过期 Expiry Date：${member.expiryDate}</li>
+                <li>升舱可用积分 Status Credit：${member.statusCredit}</li>
+                <li>升级积分 Upgrade Credit：${member.upgradeCredit}</li>
             </ul>
+            </#if>
+            <#if message??>
+            <ul>
+                <li>${message}</li>
+            </ul>
+            </#if>
         </div>
     </div>
 

@@ -2,7 +2,10 @@ package com.cq.fjtb.repository;
 
 import com.cq.fjtb.entity.TabuaMember;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author: Celine Q
@@ -12,5 +15,8 @@ import org.springframework.stereotype.Repository;
 public interface TabuaMemberRepository extends JpaRepository<TabuaMember, Long> {
 
     TabuaMember findByCardNumber(String cardNumber);
+
+    @Query("select t from TabuaMember t where t.isValid=1")
+    List<TabuaMember> findValidAll();
 
 }

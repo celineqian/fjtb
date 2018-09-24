@@ -29,6 +29,7 @@ public class TabuaMemberPipeline implements Pipeline {
         String scb = "";
         String ucb = "";
         String expiryDate = "";
+//        String la = "";
 
         TabuaMember tm = new TabuaMember();
         for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
@@ -54,9 +55,13 @@ public class TabuaMemberPipeline implements Pipeline {
                 if(DateUtil.isExpired(tm.getExpiryDate()))
                     tm.setIsValid(0);
             }
+//            if(entry.getKey().contains("Last activity")){
+//                la = (String)entry.getValue();
+//                tm.setLastActivityDate(la);
+//            }
         }
         if(name!="" && scb!="" && ucb!="" && expiryDate!=""){
-            tm.setLastUpdteDate(DateUtil.DateToStr(new Date()));
+            tm.setLastUpdateDate(DateUtil.DateToStr(new Date()));
             repository.save(tm);
         }
     }

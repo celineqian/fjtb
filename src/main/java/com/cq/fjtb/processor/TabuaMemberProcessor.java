@@ -55,11 +55,11 @@ public class TabuaMemberProcessor implements PageProcessor {
         String scb = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblStatusCreditBalanceValue']/b/text()").toString();
         String ucb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblUpgradeCreditBalanceValue']/b/text()").toString();
         String expireDate = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblExpiryDateValue']/b/text()").toString();
-//        String lastActivity = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
         page.putField("cardNumber", getCardNumber());
+
         if (name != null){
             page.putField("Name", name);
-            System.out.println("name:" + name);
+            System.out.println("Name:" + name);
         }
         if (scb != null) {
             page.putField("Status Credit Balance", scb);
@@ -67,16 +67,12 @@ public class TabuaMemberProcessor implements PageProcessor {
         }
         if (ucb != null){
             page.putField("Upgrade Credit Balance", ucb);
-            System.out.println("Upgrade Credit Balance" + ucb);
+            System.out.println("Upgrade Credit Balance:" + ucb);
         }
         if (expireDate != null){
             page.putField("Expiry Date", expireDate);
-            System.out.println("Expiry date:" + expireDate);
+            System.out.println("Expiry Date:" + expireDate);
         }
-//        if (lastActivity != null){
-//            page.putField("Last activity", lastActivity);
-//            System.out.println("last activity:" + lastActivity);
-//        }
     }
 
     public void login(){

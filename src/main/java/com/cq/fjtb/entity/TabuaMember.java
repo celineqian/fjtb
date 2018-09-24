@@ -25,6 +25,9 @@ public class TabuaMember {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private Integer isValid;
+
     private String email;
 
     private String expiryDate;
@@ -35,18 +38,9 @@ public class TabuaMember {
 
     private String upgradeCredit;
 
-    private String lastUpdteDate;
+    private String lastActivityDate;
 
-    public String getLastUpdteDate() {
-        return lastUpdteDate;
-    }
-
-    public void setLastUpdteDate(String lastUpdteDate) {
-        this.lastUpdteDate = lastUpdteDate;
-    }
-
-    @Column(nullable = false)
-    private Integer isValid;
+    private String lastUpdateDate;
 
     public Long getId() {
         return id;
@@ -78,6 +72,14 @@ public class TabuaMember {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
     }
 
     public String getEmail() {
@@ -120,11 +122,19 @@ public class TabuaMember {
         this.upgradeCredit = upgradeCredit;
     }
 
-    public Integer getIsValid() {
-        return isValid;
+    public String getLastActivityDate() {
+        return lastActivityDate;
     }
 
-    public void setIsValid(Integer isValid) {
-        this.isValid = isValid;
+    public void setLastActivityDate(String lastActivityDate) {
+        this.lastActivityDate = lastActivityDate;
+    }
+
+    public String getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(String lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

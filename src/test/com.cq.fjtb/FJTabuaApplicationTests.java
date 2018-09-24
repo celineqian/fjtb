@@ -3,6 +3,7 @@ package com.cq.fjtb;
 import com.cq.fjtb.entity.TabuaMember;
 import com.cq.fjtb.repository.TabuaMemberRepository;
 import com.cq.fjtb.util.RSAUtil;
+import javafx.scene.control.Tab;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class FJTabuaApplicationTests {
     }
 
 
-    @Test
+//    @Test
     public void findAll()throws Exception{
         List<TabuaMember> members = repository.findAll();
         List<TabuaMember> m = new ArrayList<TabuaMember>();
@@ -34,32 +35,36 @@ public class FJTabuaApplicationTests {
             System.out.println("原密码是：" + tm.getPassword());
             String cryptograph = RSAUtil.encrypt(tm.getPassword(), RSAUtil.PUBLIC_KEY_FILE);//生成的密文
             tm.setPassword(cryptograph);
-            System.out.println("原密码是：" + tm.getPassword());
+            System.out.println("现密码是：" + tm.getPassword());
             m.add(tm);
         }
         repository.saveAll(m);
     }
-//
-//
-//
-//    public void updatePassword() throws Exception{
-//        String cardNumber = "0NR44K";
-//        TabuaMember tm = tabuaMemberRepository.findByCardNumber("0NR44K");
-//        System.out.println("name is:" + tm.getName()+"     pwd is: " + tm.getPassword());
-//        tabuaMemberRepository.updatePwd(MD5Utils.md5(tm.getPassword()),cardNumber);
-//    }
-//
-//    @Test
-//    public void updateAll() throws Exception{
-//        List<TabuaMember> members = tabuaMemberRepository.findAll();
-//        for (TabuaMember tabuaMember: members){
-//            String carNumber = tabuaMember.getCardNumber();
-//            String cryptPwd = MD5Utils.md5(tabuaMember.getPassword());
-//            tabuaMemberRepository.updatePwd(cryptPwd,carNumber);
-//        }
-//        System.out.println("===============DONE===============");
-//
-//    }
+
+
+
+
+    public void decrypt(){
+        TabuaMember tm = repository.findByCardNumber("LRSKM3");
+        if(tm.getPassword().length()>100){
+            try{
+                System.out.println("加密密码为：" + tm.getPassword());
+                String text = RSAUtil.decrypt(tm.getPassword(),RSAUtil.PRIVATE_KEY_FILE);
+                System.out.println("解密后密码为：" + text);
+            }catch (Exception e){
+                System.out.println("解密过程中发生错误");
+            }
+        }else{
+            System.out.println("密码不存在");
+        }
+    }
+
+    @Test
+    public void findValidAll(){
+        List<TabuaMember> members = repository.findValidAll();
+        System.out.println("共计数据："+members.size());
+    }
+
 
 
 }

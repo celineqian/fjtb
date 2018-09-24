@@ -23,10 +23,14 @@ public class TabuaMemberController {
     @GetMapping("/search")
     public String search(@RequestParam(value="cardNumber", required=true) String cardNumber, Model model){
         TabuaMember member = repository.findByCardNumber(cardNumber);
-        model.addAttribute("member",member);
-        System.out.println(member.getName());
+        if(member != null)
+            model.addAttribute("member",member);
+        else{
+            String message = "用户不存在";
+            model.addAttribute("message",message);
+        }
+
         return "member";
     }
-
 
 }
