@@ -22,11 +22,11 @@ public class TabuaMemberController {
 
     @GetMapping("/search")
     public String search(@RequestParam(value="cardNumber", required=true) String cardNumber, Model model){
-        TabuaMember member = repository.findByCardNumber(cardNumber);
+        TabuaMember member = repository.findByCardNumber(cardNumber.trim());
         if(member != null)
             model.addAttribute("member",member);
         else{
-            String message = "用户不存在";
+            String message = "用户数据不完全不存在 Member Data Doesn't exist";
             model.addAttribute("message",message);
         }
 
