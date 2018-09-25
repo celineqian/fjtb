@@ -4,7 +4,7 @@ insert into t_tabuamember values (3,null,'CWVLWD',null,null,1,null,null,'CHOU/YA
 insert into t_tabuamember values (4,null,'DCRHBQ',null,null,1,null,null,'DU/JINSHENG','djstb123',null,null);
 insert into t_tabuamember values (5,null,'Q1BW7T',null,null,1,null,null,'CHAND/RAJESH','drtb123',null,null);
 insert into t_tabuamember values (6,null,'XC2QTM',null,null,1,null,null,'HUNG/JIEYAU','hjy123',null,null);
-insert into t_tabuamember values (8,null,'WW1JCN',null,null,1,null,null,'HUANG/LIQING','hlqtb123',null,null);
+insert into t_tabuamember values (7,null,'WW1JCN',null,null,1,null,null,'HUANG/LIQING','hlqtb123',null,null);
 insert into t_tabuamember values (8,null,'XRMT3G',null,null,1,null,null,'JIA/JIN','jjtb123',null,null);
 insert into t_tabuamember values (9,null,'VK48KW',null,null,1,null,null,'KAN/FENGJINYE','kfjytb123',null,null);
 insert into t_tabuamember values (10,null,'H7KDHB',null,null,1,null,null,'KAN/SANLOK','ksltb123',null,null);

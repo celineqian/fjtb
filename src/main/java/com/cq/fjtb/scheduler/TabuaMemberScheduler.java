@@ -29,7 +29,7 @@ public class TabuaMemberScheduler {
     private TabuaMemberRepository repository;
 
 
-    @Scheduled(cron ="0 4 11 * * ?")
+    @Scheduled(cron ="0 22 20 * * ?")
     public void TMShuScheduled(){
         System.out.println("----- 开始执行定时任务 -----");
         List<TabuaMember> members = repository.findValidAll();
