@@ -1,36 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
     <title>Index</title>
+    <#include "/header.html">
 </head>
-<main role="main" class="container">
+<body>
+<!-- 导航栏 -->
+<div class="sidebar text-left">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Tabua Club Member Points Inquire 积分查询</a>
+            </div>
 
-    <div class="starter-template">
-        <h1>Tabua Club Member Points Inquire 积分查询</h1>
-        <!--
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-        -->
-    </div>
+        </div>
+    </nav>
+</div>
+<main role="main" class="container">
     <div class="input-group mb-3">
         <form action="/search" method="get">
+            <h3>输入卡号：</h3>
             <input id="cardNumber" name="cardNumber"  type="text"  class="form-control" placeholder="Tabua Card Number" >
             <button class="btn btn-outline-secondary" type="submit">提交</button>
         </form>
     </div>
-
-
-
-
 </main><!-- /.container -->
-
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/popper.min.js"></script>
-<script src="../static/js/jquery-3.3.1.slim.min.js"></script>
-
 </body>
 </html>
