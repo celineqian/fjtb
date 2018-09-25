@@ -20,14 +20,14 @@ public class FJTabuaApplicationTests {
     @Autowired
     private TabuaMemberRepository repository;
 
+    @Test
     public void getTabuaMemberByCarNumber()throws Exception{
-        String cardNumber = "0NR44K";
+        String cardNumber = "KW008S";
         TabuaMember tm = repository.findByCardNumber(cardNumber);
         System.out.println("name is: " + tm.getName());
     }
 
 
-//    @Test
     public void findAll()throws Exception{
         List<TabuaMember> members = repository.findAll();
         List<TabuaMember> m = new ArrayList<TabuaMember>();
@@ -59,7 +59,6 @@ public class FJTabuaApplicationTests {
         }
     }
 
-    @Test
     public void findValidAll(){
         List<TabuaMember> members = repository.findValidAll();
         System.out.println("共计数据："+members.size());

@@ -24,3 +24,14 @@ insert into t_tabuamember values (23,null,'FJZSQ0',null,null,1,null,null,'YE/SAN
 insert into t_tabuamember values (24,null,'FRWVZ6',null,null,1,null,null,'ZHANG/YIFENG','ZYFTB123',null,null);
 insert into t_tabuamember values (25,null,'N8FLWF',null,null,1,null,null,'ZHENG/ZIYI  ','zzytc123',null,null);
 insert into t_tabuamember values (26,null,'PD7C5M',null,null,1,null,null,'LI/DONGMEI','ldmtb123',null,null);
+
+insert into t_tabuamember values (27,null,'KW008S',null,null,1,null,null,'WU/RUYING','wrytbid123',null,null);
+insert into t_tabuamember values (28,null,'B7FRFC',null,null,1,null,null,'ZHAO/KERRY','zktbid123',null,null);
+insert into t_tabuamember values (29,null,'4NRXWG',null,null,1,null,null,'ZHAO/FUGANG','zfgtbid123',null,null);
+insert into t_tabuamember values (30,null,'0GT0BN',null,null,1,null,null,'LENG/JUN','jltbid123',null,null);
+insert into t_tabuamember values (31,null,'WZRGB6',null,null,1,null,null,'CAO/YONGJUN','yzmtbid123',null,null);
+insert into t_tabuamember values (32,null,'10B3SB',null,null,1,null,null,'YUAN/ZHONGMAO','cyjtbid123',null,null);
+insert into t_tabuamember values (33,null,'JDGB7B',null,null,1,null,null,'SUN/SHIKUI','ssktbid123',null,null);
+insert into t_tabuamember values (34,null,'4MBXV3',null,null,1,null,null,'ZHANG/RAN','zrtbid123',null,null);
+insert into t_tabuamember values (35,null,'CZVCH2',null,null,1,null,null,'PENG/JENNIFER','pjtbid123',null,null);
+insert into t_tabuamember values (36,null,'31QXJN',null,null,1,null,null,'LIU/HONG','lhtbid123',null,null);
