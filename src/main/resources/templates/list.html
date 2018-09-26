@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Memeber Detail</title>
+    <#include "/header.html">
+</head>
+<body>
+<body>
+<!-- 导航栏 -->
+<div class="sidebar text-left">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Fulluck Tabua Club Member Points Inquire 积分查询 Alpha</a>
+            </div>
+
+        </div>
+    </nav>
+</div>
+<main role="main" class="container">
+    <div class="starter-template">
+        <h2>会员详情列表 Member Detail</h2>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">名字 Name：</th>
+                <th scope="col">卡号 Card Number</th>
+                <th scope="col">过期 Expiry Date</th>
+                <th scope="col">升舱可用积分 Status Credit</th>
+                <th scope="col">升级积分 Upgrade Credit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <#if list??>
+            <#list list as member>
+            <tr>
+                <td>${member.name}</td>
+                <td>${member.cardNumber}</td>
+                <td>${member.expiryDate}</td>
+                <td>${member.statusCredit}</td>
+                <td>${member.upgradeCredit}</td>
+            </tr>
+            </#list>
+            </#if>
+            </tbody>
+        </table>
+        <div>
+        <#if message??>
+        <ul>
+            <li>${message}</li>
+        </ul>
+         </#if>
+    </div>
+
+    </div>
+
+</main><!-- /.container -->
+</body>
+</html>

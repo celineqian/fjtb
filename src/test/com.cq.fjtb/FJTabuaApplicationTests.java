@@ -20,13 +20,21 @@ public class FJTabuaApplicationTests {
     @Autowired
     private TabuaMemberRepository repository;
 
-    @Test
+
     public void getTabuaMemberByCarNumber()throws Exception{
         String cardNumber = "KW008S";
         TabuaMember tm = repository.findByCardNumber(cardNumber);
         System.out.println("name is: " + tm.getName());
     }
 
+    @Test
+    public void findWithPartName() throws Exception{
+        String name = "li";
+        List<TabuaMember> list = repository.findWithPartOfName(name);
+        for (TabuaMember tm: list){
+            System.out.println("名字：" + tm.getName() + "卡号：" + tm.getCardNumber());
+        }
+    }
 
     public void findAll()throws Exception{
         List<TabuaMember> members = repository.findAll();
