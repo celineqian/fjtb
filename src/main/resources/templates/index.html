@@ -10,7 +10,7 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">Tabua Club Member Points Inquire 积分查询</a>
+                <a class="navbar-brand">Fulluck Tabua Club Member Points Inquire 积分查询 Alpha</a>
             </div>
 
         </div>
@@ -19,9 +19,19 @@
 <main role="main" class="container">
     <div class="input-group mb-3">
         <form action="/search" method="get">
-            <h3>输入卡号：</h3>
-            <input id="cardNumber" name="cardNumber"  type="text"  class="form-control" placeholder="Tabua Card Number" >
-            <button class="btn btn-outline-secondary" type="submit">提交</button>
+            <div class="input-group input-group-lg">
+                <div class="input-group">
+                    输入卡号： <input id="cardNumber" name="cardNumber"  type="text"  class="form-control" placeholder="Tabua Card Number">
+                </div>
+                <br>
+                <div class="input-group">
+                    或会员名：<input id="name" name="name"  type="text"  class="form-control" placeholder="Tabua Member">
+                </div>
+                <br>
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="submit">提交</button>
+                </div>
+            </div>
         </form>
     </div>
 </main><!-- /.container -->

@@ -10,6 +10,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author: Celine Q
  * @create: 2018-09-16 14:54
@@ -21,16 +24,22 @@ public class TabuaMemberController {
     private TabuaMemberRepository repository;
 
     @GetMapping("/search")
-    public String search(@RequestParam(value="cardNumber", required=true) String cardNumber, Model model){
-        TabuaMember member = repository.findByCardNumber(cardNumber.trim());
-        if(member != null)
-            model.addAttribute("member",member);
-        else{
-            String message = "用户数据不完全不存在 Member Data Doesn't exist";
+    public String search(@RequestParam(value="cardNumber") String cardNumber, @RequestParam(value="name")String name, Model model){
+        TabuaMember member;
+        String message;
+        List<TabuaMember> list =  new ArrayList<TabuaMember>();
+        if(cardNumber.isEmpty() && name.isEmpty()) {
+            message = "至少输入一个参数 Please entry at least one condition!";
             model.addAttribute("message",message);
+        }else if(!cardNumber.isEmpty()){
+            member = repository.findByCardNumber(cardNumber.trim());
+            if(member!=null)
+                list.add(member);
+            model.addAttribute("list",list);
+        }else if(!name.isEmpty()){
+            list = repository.findWithPartOfName(name);
+            model.addAttribute("list",list);
         }
-
-        return "member";
+        return "list";
     }
-
 }
