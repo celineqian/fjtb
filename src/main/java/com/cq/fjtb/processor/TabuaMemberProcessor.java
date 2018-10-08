@@ -55,7 +55,12 @@ public class TabuaMemberProcessor implements PageProcessor {
         String scb = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_19_lblStatusCreditBalanceValue']/b/text()").toString();
         String ucb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_19_lblUpgradeCreditBalanceValue']/b/text()").toString();
         String expireDate = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_19_lblExpiryDateValue']/b/text()").toString();
-        String lastActivityDate = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
+        String lastActivityDate = "";
+        try{
+            lastActivityDate = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         page.putField("cardNumber", getCardNumber());
 
@@ -75,7 +80,7 @@ public class TabuaMemberProcessor implements PageProcessor {
             page.putField("Expiry Date", expireDate);
             System.out.println("Expiry Date:" + expireDate);
         }
-        if(lastActivityDate !=null ) {
+        if(lastActivityDate != null ) {
             page.putField("Last Activity Date", lastActivityDate);
             System.out.println("Last Activity Date:" + lastActivityDate);
         }
